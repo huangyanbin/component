@@ -36,7 +36,7 @@ public abstract class JsonCallback<T> extends StringCallback {
     protected ILoading mLoading;
     protected int responseCode;
     public static final String NET_NO_CONNECT = "net_no_connect";
-    protected LifecycleProvider lifecycleProvider;
+    protected LifecycleProvider<T> lifecycleProvider;
 
 
 
