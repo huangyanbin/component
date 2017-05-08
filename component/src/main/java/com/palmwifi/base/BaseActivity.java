@@ -29,22 +29,20 @@ public abstract class BaseActivity< P extends IPresenter> extends RxSupportActiv
 
     protected P mPresenter;
 
-    private Unbinder mUnbinder;
-
-
-
+    private Unbinder mUnBinder;
 
 
     @Override
     @CallSuper
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if(useEventBus()) {
             EventBus.getDefault().register(this);
         }
         StatusUtils.setBarStatusWhite(this,getStatusColor());
         setContentView(setLayoutID());
-        mUnbinder = ButterKnife.bind(this);
+        mUnBinder = ButterKnife.bind(this);
         initView(savedInstanceState);
         initData();
     }
@@ -65,8 +63,8 @@ public abstract class BaseActivity< P extends IPresenter> extends RxSupportActiv
         if(useEventBus())
             EventBus.getDefault().unregister(this);
         OkHttpUtils.getInstance().cancelTag(this);
-        if (mUnbinder != Unbinder.EMPTY)
-            mUnbinder.unbind();
+        if (mUnBinder != Unbinder.EMPTY)
+            mUnBinder.unbind();
         if(mPresenter != null)
             mPresenter.unSubscribe();
         super.onDestroy();
@@ -96,7 +94,9 @@ public abstract class BaseActivity< P extends IPresenter> extends RxSupportActiv
 
     protected abstract void initView(@Nullable Bundle savedInstanceState);
 
-    protected abstract void initData();
+    protected  void initData(){
+
+    }
 
 
     @Override

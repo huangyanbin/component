@@ -9,9 +9,9 @@ import android.support.annotation.Nullable;
  *  需要对activity 全局进行操作可以重写IActivity
  */
 
-public class ActivityManager implements IActivity {
+public class ActivityManager implements IActivityLifecycle {
 
-    private IActivity mProxy;
+    private IActivityLifecycle mProxy;
 
     private ActivityManager(){}
     private static volatile ActivityManager instance = null;
@@ -69,7 +69,7 @@ public class ActivityManager implements IActivity {
         }
     }
 
-    public void setProxy(IActivity iActivity) {
+    public void setProxy(IActivityLifecycle iActivity) {
         this.mProxy = iActivity;
     }
 }
