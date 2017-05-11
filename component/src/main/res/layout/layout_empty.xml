@@ -16,20 +16,7 @@
         android:textColor="@color/no_more_text_color"
         android:textSize="13sp" />
 
-   <!-- <com.palmwifi.view.loadingballs.BallView
-        android:id="@+id/pb_empty_tip"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_above="@id/tv_empty_tip"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        lib:ball_colors="@array/colors"
-        lib:balls="3"
-        lib:enable_size_animation="true"
-        lib:max_ball_size="7dp"
-        lib:min_ball_size="4dp"
-        lib:movement_cycle_time="2000"
-        lib:size_cycle_time="1000" />-->
+
    <ProgressBar
         android:id="@+id/pb_empty_tip"
         android:layout_width="@dimen/dialog_img_width"

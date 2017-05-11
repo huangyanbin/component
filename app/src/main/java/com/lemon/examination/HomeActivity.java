@@ -59,4 +59,9 @@ public class HomeActivity extends BaseActivity<HomeContract.Presenter> implement
     public void requestSuccess(List<User> userList) {
         Toast.makeText(this, "获取到数据", Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void requestFailure() {
+        Toast.makeText(this, "获取到数据失败", Toast.LENGTH_SHORT).show();
+    }
 }

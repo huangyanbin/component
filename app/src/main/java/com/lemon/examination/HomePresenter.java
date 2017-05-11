@@ -2,19 +2,14 @@ package com.lemon.examination;/**
  * Created by David on 2017/5/5.
  */
 
-import android.content.Context;
-
 import com.lemon.examination.bean.BaseResult;
 import com.lemon.examination.bean.User;
 import com.palmwifi.http.AsyncCallback;
-import com.palmwifi.utils.RxHelpUtils;
 import com.trello.rxlifecycle.LifecycleProvider;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.cache.CacheControl;
 
 import java.util.List;
-
-import okhttp3.Call;
 
 /**
  * <pre>
