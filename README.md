@@ -18,7 +18,8 @@ root gradle:
 
 第二步：
 
-	compile 'com.github.huangyanbin:component:v1.0'
+	compile 'com.github.huangyanbin:component:vcompile 'com.github.huangyanbin:component:1.1'
+
 
 **1.功能介绍**
 
