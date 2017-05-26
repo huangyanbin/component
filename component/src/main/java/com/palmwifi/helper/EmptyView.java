@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.palmwifi.base.BaseApp;
 import com.palmwifi.fragmention.R;
 
 
@@ -35,7 +34,7 @@ public class EmptyView  {
     private EmptyView(Builder builder) {
         this.builder = builder;
         contentView = builder.contentView;
-        emptyView = View.inflate(BaseApp.getContext(), R.layout.layout_empty, null);
+        emptyView = View.inflate(contentView.getContext(), R.layout.layout_empty, null);
         emptyTipTv = (TextView) emptyView.findViewById(R.id.tv_empty_tip);
         emptyTipPb =  emptyView.findViewById(R.id.pb_empty_tip);
         genEmptyView();
@@ -47,7 +46,7 @@ public class EmptyView  {
     public void showLoading() {
         if (emptyView != null) {
            emptyTipTv.setText(builder.loadingTip != null ? builder.loadingTip
-                    : BaseApp.getContext().getString(R.string.empty_loading_tip));
+                    : contentView.getContext().getString(R.string.empty_loading_tip));
            emptyTipPb.setVisibility(View.VISIBLE);
             emptyView.setClickable(false);
         }
@@ -59,7 +58,7 @@ public class EmptyView  {
 
         if (emptyView != null) {
            emptyTipTv.setText(builder.failureTip != null ? builder.failureTip
-                    : BaseApp.getContext().getString(R.string.empty_loading_failure_tip));
+                    : contentView.getContext().getString(R.string.empty_loading_failure_tip));
            emptyTipPb.setVisibility(View.INVISIBLE);
             if(builder.onFailureClickListener != null){
                 emptyView.setClickable(true);
@@ -74,7 +73,7 @@ public class EmptyView  {
 
         if (emptyView != null) {
            emptyTipTv.setText(builder.noDataTip != null ? builder.noDataTip
-                    : BaseApp.getContext().getString(R.string.empty_loading_no_data_tip));
+                    : contentView.getContext().getString(R.string.empty_loading_no_data_tip));
             emptyView.setClickable(false);
            emptyTipPb.setVisibility(View.INVISIBLE);
         }

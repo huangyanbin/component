@@ -1,9 +1,7 @@
 package com.palmwifi.http;
 
 import android.widget.Toast;
-
 import com.google.gson.Gson;
-import com.palmwifi.base.BaseApp;
 import com.palmwifi.fragmention.R;
 import com.palmwifi.helper.ILoading;
 import com.palmwifi.utils.BaseUtils;
