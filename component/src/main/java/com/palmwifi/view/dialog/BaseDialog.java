@@ -9,9 +9,7 @@ import android.view.Window;
 import android.view.WindowManager.LayoutParams;
 
 import com.palmwifi.fragmention.R;
-import com.palmwifi.utils.BaseUtils;
-
-import okhttp3.Request;
+import com.palmwifi.utils.UiUtils;
 
 
 public class BaseDialog extends Dialog {
@@ -43,7 +41,7 @@ public class BaseDialog extends Dialog {
 		}
 		LayoutParams params = window.getAttributes();
 		window.getDecorView().setPadding(0, 0, 0,0);
-		BaseUtils.Rect rect = BaseUtils.getScreen((Activity) builder.context);
+		UiUtils.Rect rect = UiUtils.getScreen((Activity) builder.context);
 		if(builder.isFillHeight){
 			params.height = rect.getHeight()- (builder.margin != null? builder.margin[1] + builder.margin[3] :0);
 		}else {
@@ -159,6 +157,17 @@ public class BaseDialog extends Dialog {
 			this.height = height;
 			return this;
 		}
+
+		public Builder big(){
+			this.margin = new int[4];
+			int margin = context.getResources().getDimensionPixelSize(R.dimen.dialog_support_padding);
+			this.margin[0] = margin;
+			this.margin[1] = 0;
+			this.margin[2] = margin;
+			this.margin[3] = 0;
+			return this;
+		}
+
 		public Builder setMargin(int left, int top, int right, int bottom) {
 			this.margin = new int[4];
 			margin[0] = left;

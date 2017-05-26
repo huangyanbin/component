@@ -40,7 +40,6 @@ public abstract class BaseActivity< P extends IPresenter> extends RxSupportActiv
         if(useEventBus()) {
             EventBus.getDefault().register(this);
         }
-        StatusUtils.setBarStatusWhite(this,getStatusColor());
         setContentView(setLayoutID());
         mUnBinder = ButterKnife.bind(this);
         initView(savedInstanceState);

@@ -63,7 +63,7 @@ public abstract class AsyncCallback<T,K> extends JsonCallback<K> {
             }
         }).observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.immediate())
-                .compose(lifecycleProvider.<K>bindToLifecycle())
+                .compose(provider.<K>bindToLifecycle())
                 .subscribe(new Action1<K>() {
                     @Override
                     public void call(K k) {

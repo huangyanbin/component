@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.palmwifi.base.BaseApp;
 import com.palmwifi.fragmention.R;
 import com.palmwifi.helper.ILoading;
+import com.palmwifi.utils.BaseUtils;
 import com.palmwifi.utils.NetUtils;
 import com.trello.rxlifecycle.LifecycleProvider;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -36,16 +37,16 @@ public abstract class JsonCallback<T> extends StringCallback {
     protected ILoading mLoading;
     protected int responseCode;
     public static final String NET_NO_CONNECT = "net_no_connect";
-    protected LifecycleProvider<T> lifecycleProvider;
+    protected LifecycleProvider<T> provider;
 
 
 
-    public JsonCallback(LifecycleProvider lifecycleProvider){
-        this.lifecycleProvider = lifecycleProvider;
+    public JsonCallback(LifecycleProvider provider){
+        this.provider = provider;
     }
 
-    public JsonCallback(LifecycleProvider lifecycleProvider, ILoading loading){
-        this.lifecycleProvider = lifecycleProvider;
+    public JsonCallback(LifecycleProvider provider, ILoading loading){
+        this.provider = provider;
         mLoading = loading;
 
     }
@@ -93,13 +94,13 @@ public abstract class JsonCallback<T> extends StringCallback {
         }).subscribeOn(Schedulers.immediate())
         .observeOn(AndroidSchedulers.mainThread())
                 //解绑
-                .compose(lifecycleProvider.<String>bindToLifecycle())
+                .compose(provider.<String>bindToLifecycle())
         .subscribe(new Action1<String>() {
             @Override
             public void call(String s) {
                 if(s != null) {
                     onFailure(responseCode,NET_NO_CONNECT);
-                    Toast.makeText(BaseApp.getContext(), s, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BaseUtils.getContext(provider), s, Toast.LENGTH_SHORT).show();
                 }else {
                     onFailure(responseCode,e.getMessage());
                 }
@@ -108,10 +109,10 @@ public abstract class JsonCallback<T> extends StringCallback {
     }
 
     private void parseError(Subscriber<? super String> subscriber) {
-        if(!NetUtils.isNetworkConnected(BaseApp.getContext())){
+        if(!NetUtils.isNetworkConnected(BaseUtils.getContext(provider))){
             if(netConnectionToast < NET_CONNECTION_TOAST_COUNT) {
                 netConnectionToast++;
-                subscriber.onNext(BaseApp.getContext().getString(R.string.net_connection_error));
+                subscriber.onNext(BaseUtils.getContext(provider).getString(R.string.net_connection_error));
             }else{
                 subscriber.onNext(null);
             }
@@ -146,7 +147,7 @@ public abstract class JsonCallback<T> extends StringCallback {
             }
         }).observeOn(AndroidSchedulers.mainThread())
            .subscribeOn(Schedulers.immediate())
-            .compose(lifecycleProvider.<T>bindToLifecycle())
+            .compose(provider.<T>bindToLifecycle())
                 .subscribe(new Action1<T>() {
                     @Override
                     public void call(T t) {
@@ -241,9 +242,9 @@ public abstract class JsonCallback<T> extends StringCallback {
      */
     protected void parseDataError(boolean isFromCache,Call call, int id) {
         if(isFromCache) {
-            onNoCache(call, new IOException(BaseApp.getContext().getString(R.string.json_parse_error)), id);
+            onNoCache(call, new IOException(BaseUtils.getContext(provider).getString(R.string.json_parse_error)), id);
         }else {
-            onFailure(responseCode, BaseApp.getContext().getString(R.string.json_parse_error));
+            onFailure(responseCode, BaseUtils.getContext(provider).getString(R.string.json_parse_error));
         }
     }
 

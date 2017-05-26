@@ -5,6 +5,7 @@ package com.lemon.examination;/**
 import com.lemon.examination.bean.BaseResult;
 import com.lemon.examination.bean.User;
 import com.palmwifi.http.AsyncCallback;
+import com.palmwifi.utils.BaseUtils;
 import com.trello.rxlifecycle.LifecycleProvider;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.cache.CacheControl;
@@ -37,7 +38,7 @@ public class HomePresenter implements HomeContract.Presenter {
     public void requestData() {
         OkHttpUtils.get().url("http:请填入自己的Url").addParams("uid","0").tag(view).build()
                 .cacheControl(CacheControl.NO_EXPIRE_USE_CACHE) //设置缓存模式，可不设置
-                .cacheControl(5*60).execute(new AsyncCallback<BaseResult<List<User>>,List<User>>((LifecycleProvider)view) {
+                .cacheControl(5*60).execute(new AsyncCallback<BaseResult<List<User>>,List<User>>(BaseUtils.getProvider(view)) {
 
 
             /**

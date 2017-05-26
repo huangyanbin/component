@@ -105,21 +105,6 @@ public class RxTaskUtils {
 
 
 
-    /**
-     * 转换对象
-     * @param view
-     * @param <T>
-     * @return
-     */
-    public static <T> LifecycleTransformer<T> bindToLifecycle(IView view) {
 
-        if (view instanceof BaseActivity) {
-            return ((BaseActivity) view).bindToLifecycle();
-        } else if (view instanceof BaseFragment) {
-            return ((BaseFragment) view).bindToLifecycle();
-        }else {
-            throw new IllegalArgumentException("view isn't activity or fragment");
-        }
-    }
 
 }
