@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Examination</string>
+    <string name="app_name">掘金</string>
+    <string name="exit_tip">再按一次退出%s</string>
 </resources>

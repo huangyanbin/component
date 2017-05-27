@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="bar_bottom">45dip</dimen>
+    <dimen name="bar_bottom_width_img">25dip</dimen>
+    <dimen name="bar_bottom_text_size">10sp</dimen>
+</resources>
